@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tablero de Neón</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hud">
+        <div class="brand">Tablero de Neón</div>
+        <div class="scores">
+          <div>Puntaje: <span id="score">0</span></div>
+          <div>Mejor: <span id="best">0</span></div>
+        </div>
+        <button id="soundToggle" class="sound" aria-pressed="false" title="Toggle sound">
+          Sonido: Off
+        </button>
+      </header>
+
+      <section class="stage">
+        <canvas id="game" width="640" height="360" aria-label="Neon Dash game"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="panel">
+            <h1>Tablero de Neón</h1>
+            <p>Un botón. Salta sobre los bloques sin tocarlos.</p>
+            <p>Toca una vez para saltar, toca en el aire para correr.</p>
+            <p class="hint">Barra espaciadora / Toque para empezar</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="tips">
+        <div class="controls-info">
+          <span>Controles: Barra espaciadora / Toque en pantalla.</span>
+          <span>Sobrevive al tablero de neón.</span>
+        </div>
+        <div class="credits" style="margin-top: 10px; opacity: 0.8; font-size: 0.9em;">
+          Realizado por <strong>Candela Corradi</strong>
+        </div>
+      </footer>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

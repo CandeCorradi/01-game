@@ -1,0 +1,9 @@
+{
+  "name": "neon-dash",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Neon Dash - one-button arcade game",
+  "scripts": {
+    "dev": "npx serve ."
+  }
+}
