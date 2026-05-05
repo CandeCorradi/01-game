@@ -131,7 +131,7 @@ function end() {
     <h1>Tablero de Neón</h1>
     <p>Puntaje: <strong>${state.score}</strong></p>
     <p>Mejor: <strong>${state.best}</strong></p>
-    <p class="hint">Presiona Espacio / Toque para reiniciar</p>
+    <p class="hint">Presiona Espacio / Click / Toque para reiniciar</p>
   `;
 }
 
