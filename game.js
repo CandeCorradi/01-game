@@ -289,15 +289,21 @@ requestAnimationFrame(loop);
 
 // --- MODIFICACIONES PARA MÓVILES ---
 
+// --- SISTEMA DE ENTRADA UNIFICADO ---
+
 function handleInput(event) {
-  if (event) {
-    // Previene el zoom y el scroll al tocar el juego
-    if (event.cancelable) event.preventDefault();
+  // Solo actuamos si el clic no fue sobre el botón de sonido
+  if (event && event.target === soundToggle) return;
+
+  // Evita el comportamiento molesto de scroll/zoom en móviles
+  if (event && event.cancelable) {
+    event.preventDefault();
   }
+
   jumpOrDash();
 }
 
-// Teclado
+// Teclado (PC)
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
     handleInput(event);
@@ -305,12 +311,13 @@ window.addEventListener("keydown", (event) => {
 });
 
 // Toque en celulares (Touch)
-canvas.addEventListener("touchstart", (event) => {
+// Lo ponemos en window para que detecte el toque aunque esté el overlay activo
+window.addEventListener("touchstart", (event) => {
   handleInput(event);
 }, { passive: false });
 
 // Click del Mouse (PC)
-canvas.addEventListener("pointerdown", (event) => {
+window.addEventListener("mousedown", (event) => {
   // Evitamos que se dispare doble si es un toque
   if (event.pointerType !== "touch") {
     handleInput(event);
