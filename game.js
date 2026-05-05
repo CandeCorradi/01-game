@@ -127,7 +127,6 @@ function start() {
 function end() {
   state.running = false;
   overlay.classList.remove("hidden");
-  // Modificación: Textos en español para la pantalla de fin de juego
   overlay.querySelector(".panel").innerHTML = `
     <h1>Tablero de Neón</h1>
     <p>Puntaje: <strong>${state.score}</strong></p>
@@ -288,23 +287,37 @@ function loop(now) {
 
 requestAnimationFrame(loop);
 
-function handleInput() {
+// --- MODIFICACIONES PARA MÓVILES ---
+
+function handleInput(event) {
+  if (event) {
+    // Previene el zoom y el scroll al tocar el juego
+    if (event.cancelable) event.preventDefault();
+  }
   jumpOrDash();
 }
 
+// Teclado
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
-    event.preventDefault();
-    handleInput();
+    handleInput(event);
   }
 });
 
+// Toque en celulares (Touch)
+canvas.addEventListener("touchstart", (event) => {
+  handleInput(event);
+}, { passive: false });
+
+// Click del Mouse (PC)
 canvas.addEventListener("pointerdown", (event) => {
-  event.preventDefault();
-  handleInput();
+  // Evitamos que se dispare doble si es un toque
+  if (event.pointerType !== "touch") {
+    handleInput(event);
+  }
 });
 
-// Modificación: Texto del botón de sonido en español
+// Sonido
 soundToggle.addEventListener("click", () => {
   state.sound = !state.sound;
   soundToggle.setAttribute("aria-pressed", String(state.sound));
